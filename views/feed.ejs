@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Posts in <%= user.city ? user.city : 'your city' %></title>
+    <style>
+         * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Helvetica', Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cool-navbar {
+            background: #333;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-btn {
+            color: #fff;
+            padding: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-btn:hover {
+            color: #007bff;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .profile-pic-nav {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-container {
+            margin: 40px auto;
+            width: 80%;
+        }
+
+        .city-form, .post-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .post-form h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .form-group input[type="text"], .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background-color: #f9f9f9;
+        }
+
+        .form-group input[type="text"]:focus, .form-group textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .file-input {
+            display: flex;
+            align-items: center;
+        }
+
+        .file-input label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            color: #333;
+        }
+
+        .file-input label:hover {
+            background-color: #f0f4f8;
+        }
+
+        .file-input input {
+            display: none;
+        }
+
+        .file-input i {
+            margin-right: 10px;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .post-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .post-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .posts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .post {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .post-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .post-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .post-content {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .post-author, .post-city {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .action-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #007bff;
+            transition: transform 0.2s;
+        }
+
+        .action-button:hover {
+            transform: scale(1.2);
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+
+        .no-posts {
+            text-align: center;
+            font-size: 18px;
+            color: #777;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                width: 95%;
+            }
+
+            .post-form {
+                padding: 20px;
+            }
+
+            .post-btn {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="cool-navbar" id="navbar">
+        <div class="logo">
+            <a href="/" class="logo-text">EcoPower Connect</a>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-btn">Home</a>
+            <a href="/profile" class="nav-btn">profile</a>
+            <a href="/logout" class="nav-btn">log-out</a>
+        </div>
+        <div class="profile-icon">
+            <img src="/images/default-profile.png" alt="Profile" class="profile-pic-nav">
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <% if (!user.city) { %>
+            <!-- Prompt to set city if not set -->
+            <div class="city-form">
+                <form action="/set-city" method="POST">
+                    <input type="text" name="city" placeholder="Enter your city" required>
+                    <button type="submit" class="city-btn">Set City</button>
+                </form>
+            </div>
+        <% } else { %>
+            <!-- New Post Form -->
+            <div class="post-form">
+                <h2>Create a New Post</h2>
+                <form action="/post" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="title">Post Title</label>
+                        <input type="text" id="title" name="title" placeholder="Enter your post title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Post Content</label>
+                        <textarea id="content" name="content" placeholder="What's on your mind?" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group file-input">
+                        <label for="image"><i class="fas fa-upload"></i> Add an image (optional)</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                    </div>
+                    <button type="submit" class="post-btn">Post</button>
+                </form>
+            </div>
+
+            <!-- Posts List -->
+            <div class="posts-container">
+                <% if (posts.length === 0) { %>
+                    <div class="no-posts">
+                        <p>No posts available yet. Be the first to create one!</p>
+                    </div>
+                <% } else { %>
+                    <% posts.forEach(post => { %>
+                        <div class="post">
+                            <h2 class="post-title"><%= post.title %></h2>
+                            <% if (post.imageUrl) { %>
+                                <img src="../uploads/<%= post.imageUrl %>" alt="Post Image" class="post-image">
+                            <% } %>
+                            <p class="post-content"><%= post.content %></p>
+                            <p class="post-author">Posted by: <%= post.user.name %></p>
+                            <p class="post-city">City: <%= post.city %></p>
+                            <div class="post-actions">
+                                <button class="action-button" id="like-btn">
+                                    <i class="fa fa-thumbs-up"></i>
+                                </button>
+                                <button class="action-button" id="comment-btn">
+                                    <i class="fa fa-comment"></i>
+                                </button>
+                                <button class="action-button" id="share-btn">
+                                    <i class="fa fa-share-alt"></i>
+                                </button>
+                                <% if (post.user._id.toString() === user._id.toString()) { %>
+                                    <form action="/post/delete/<%= post._id %>" method="POST">
+                                        <button type="submit" class="delete-btn">Delete</button>
+                                    </form>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+
+    <script src="/js/navbar.js"></script>
+</body>
+
+</html>

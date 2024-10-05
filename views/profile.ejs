@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Profile</title>
+    <!-- <link rel="stylesheet" href="profile.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.profile-parent {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ececec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.profile-card {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 550px;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.95);
+    animation: fadeInUp 1s ease forwards;
+}
+
+.profile-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+.profile-header {
+    padding: 30px;
+    background-color: #27476e;
+    color: #fff;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    border: 7px solid #fff;
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover .profile-pic {
+    transform: scale(1.15);
+}
+
+.name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.profile-body {
+    padding: 30px;
+}
+
+.description {
+    margin-bottom: 25px;
+    font-size: 18px;
+    color: #555;
+}
+
+.location-box {
+    background-color: #f0f4f7;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.location-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.location-title {
+    font-size: 22px;
+    color: #78c40e;
+    font-weight: 600;
+}
+
+.city {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-link {
+    background-color: #dc5151;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-size: 16px;
+}
+
+.social-link:hover {
+    background-color: #18344f;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+.cool-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 50px;
+    background-color: #ececec;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-scrolled {
+    background-color: rgb(31, 46, 66);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo-text {
+    color: black;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-btn {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    position: relative;
+    padding: 10px 0;
+    transition: color 0.4s ease;
+}
+
+.nav-btn:hover {
+    color: #00d1ff;
+}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic-nav {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* post */
+
+/* User Posts Section */
+.user-posts {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.user-posts h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #27476e;
+    text-align: center;
+}
+
+.user-posts ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-posts li {
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-posts li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.user-posts h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.user-posts p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.user-posts img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.user-posts .delete-btn {
+    background-color: #dc5151;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.user-posts .delete-btn:hover {
+    background-color: #b33333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.user-posts p.posted-date {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+  </style>
+</head>
+
+<body>
+    <nav class="cool-navbar" id="navbar">
+        <div class="logo">
+            <a href="/" class="logo-text">EcoPower Connect</a>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-btn">Home</a>
+            <a href="/logout" class="nav-btn">log-out</a>
+            <a href="/feed"  class="nav-btn">Feed</a>
+        </div>
+        <div class="profile-icon">
+            <img src="<%= user.dp ? user.dp : 'https://via.placeholder.com/50' %>" alt="Profile" class="profile-pic-nav">
+        </div>
+    </nav>
+    
+    <div class="profile-parent" style="margin-top: 70px;">
+        <div class="profile-container">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="<%= user.dp ? user.dp : 'https://via.placeholder.com/170' %>" alt="Profile Picture" class="profile-pic">
+                    <h1 class="name"><%= user.name %></h1>
+                </div>
+                <div class="profile-body">
+                    <p class="description"><%= user.email %></p>
+                    <div class="location-box">
+                        <h2 class="location-title">Location</h2>
+                        <p class="city"><%= user.city ? user.city : 'Not Set' %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section to display user's posts -->
+    <div class="user-posts">
+        <h2>Your Posts</h2>
+        <ul>
+            <% if (user.post) { %>
+                <% user.post.forEach(post => { %>
+                    <li>
+                        <h3><%= post.title %></h3>
+                        <p><%= post.content %></p>
+                        <% if (post.imageUrl) { %>
+                            <img src="../uploads/<%= post.imageUrl %>" alt="Post Image" style="max-width: 100%; height: auto;">
+                        <% } %>
+                        <p>Posted on: <%= new Date(post.createdAt).toLocaleDateString() %></p>
+                        <form action="/post/delete/<%= post._id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                    </li>
+                <% }) %>
+            <% } else { %>
+                <li>No posts yet.</li>
+            <% } %>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('.profile-card');
+            setTimeout(() => {
+                card.style.opacity = '1';
+            }, 500);
+        });
+
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
